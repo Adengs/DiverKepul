@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_30sdp"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/img_delete"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icn_delete"/>
+
+            <ImageView
+                android:id="@+id/img_jenis"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="wrap_content"
+                android:src="@drawable/img_dummy_1"
+                android:layout_marginStart="@dimen/_7sdp"/>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginStart="@dimen/_15sdp">
+
+                <TextView
+                    android:id="@+id/text_jenis"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Minyak Jelantah"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_9sdp"/>
+
+                <TextView
+                    android:id="@+id/text_timbangan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2500 Kg"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/_9sdp"
+                    android:layout_marginTop="@dimen/_3sdp"/>
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/btn_minus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icn_minus"/>
+
+            <TextView
+                android:id="@+id/text_berat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="10 Kg"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="@dimen/_9sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"/>
+
+            <ImageView
+                android:id="@+id/btn_plus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/icn_plus"/>
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/space3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/soft_grey"
+            app:layout_constraintTop_toBottomOf="@+id/lay_cust"
+            android:layout_marginTop="@dimen/_10sdp"/>
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

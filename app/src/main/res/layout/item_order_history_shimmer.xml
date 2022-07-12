@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:foreground="?selectableItemBackground"
+    android:paddingTop="@dimen/_5sdp"
+    android:paddingBottom="@dimen/_5sdp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/icn_bg_order"
+        android:padding="@dimen/_15sdp">
+
+        <LinearLayout
+            android:id="@+id/code_order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_21sdp"
+            android:orientation="horizontal"
+            android:foreground="@color/grey">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="Orderan"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="#202109153214"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/image_profil_home"
+            android:layout_width="@dimen/_35sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_below="@+id/code_order"
+            android:adjustViewBounds="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/profile_image"
+            app:shapeAppearance="@style/roundedImageViewRounded"
+            android:foreground="@color/grey"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/code_order"
+            android:layout_toEndOf="@id/image_profil_home"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:id="@+id/lay_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/name_cust"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_bold"
+                        android:text="Joko Dimas"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_12sdp"
+                        android:foreground="@color/grey"/>
+
+                    <TextView
+                        android:id="@+id/text_sum"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Est. Transaksi"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_10sdp"
+                        android:foreground="@color/grey"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_4sdp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/text_range"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="3.1 Km"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_10sdp"
+                        android:foreground="@color/grey"/>
+
+                    <TextView
+                        android:id="@+id/text_kg"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="18 Kg"
+                        android:textColor="@color/blue_kepul"
+                        android:textSize="@dimen/_10sdp"
+                        android:foreground="@color/grey"/>
+
+                    <TextView
+                        android:id="@+id/text_budget"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Rp. 300.000"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_10sdp"
+                        android:foreground="@color/grey"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/lay_track"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/image_profil_home"
+            android:layout_marginTop="@dimen/_30sdp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <LinearLayout
+                android:id="@+id/track"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_7sdp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:foreground="@color/grey">
+
+                <ImageView
+                    android:layout_width="@dimen/_11sdp"
+                    android:layout_height="@dimen/_11sdp"
+                    android:src="@drawable/icn_dot" />
+
+                <View
+                    android:layout_width="@dimen/_2sdp"
+                    android:layout_height="@dimen/_45sdp"
+                    android:background="@color/soft_grey" />
+
+                <ImageView
+                    android:layout_width="@dimen/_12sdp"
+                    android:layout_height="@dimen/_12sdp"
+                    android:src="@drawable/icn_map" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lay_text_pickup"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_19sdp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Lokasi Penjemputan"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/_10sdp"
+                    android:foreground="@color/grey"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Alamat Penjemputan Pengguna"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:foreground="@color/grey"/>
+
+                <View
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/soft_grey" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Lokasi Drop Off"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/_10sdp"
+                    android:foreground="@color/grey"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Lokasi Gedung Kepul Point"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp"
+                    android:foreground="@color/grey"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/lay_km"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:foreground="@color/grey">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="5"
+                    android:textColor="@color/black"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="Km"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/btn_send"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_45sdp"
+            android:layout_below="@+id/lay_track"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:background="@drawable/outline_blue"
+            android:fontFamily="@font/montserrat_regular"
+            android:gravity="center"
+            android:text="Telepon"
+            android:textColor="@color/blue_kepul"
+            android:textSize="@dimen/_12sdp"
+            android:foreground="@color/grey"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>
