@@ -46,7 +46,6 @@ class SplashScreen : AppCompatActivity() {
                         sph.saveAuthToken(tokenResponse.data?.token.toString())
                         Log.e("Auth1", tokenResponse.toString())
                         startActivity(intent)
-                        finish()
                     }else{
                         Log.e("Auth2", response.errorBody()!!.string())
                     }

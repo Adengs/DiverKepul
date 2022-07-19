@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EmailVerification"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:focusable="false"
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:id="@+id/lay_toolbar"
@@ -79,8 +81,11 @@
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
                 android:hint="Kode verifikasi"
-                android:inputType="textEmailAddress"
-                android:textSize="@dimen/_12sdp"/>
+                android:inputType="number"
+                android:textSize="@dimen/_12sdp"
+                android:textColor="@color/semi_black"
+                android:imeOptions="flagNoExtractUi"
+                android:singleLine="true"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 

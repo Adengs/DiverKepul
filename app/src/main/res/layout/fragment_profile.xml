@@ -45,16 +45,18 @@
                 app:layout_constraintTop_toTopOf="parent">
 
                 <LinearLayout
+                    android:id="@+id/lay_profil_profil"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="visible">
 
                     <com.google.android.material.imageview.ShapeableImageView
                         android:id="@+id/image_profil_home"
                         android:layout_width="@dimen/_35sdp"
                         android:layout_height="@dimen/_35sdp"
-                        android:layout_marginStart="@dimen/_15sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:adjustViewBounds="true"
                         android:scaleType="centerCrop"
                         android:src="@drawable/profile_image"
@@ -76,10 +78,12 @@
                             android:textSize="@dimen/_8sdp" />
 
                         <TextView
+                            android:id="@+id/text_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/_2sdp"
                             android:fontFamily="@font/montserrat_bold"
+                            android:maxWidth="@dimen/_140sdp"
                             android:text="Rizal Kambuaya"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_12sdp" />
@@ -107,6 +111,82 @@
 
                 </LinearLayout>
 
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/lay_profil_profil_shimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:shimmer_auto_start="true"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/image_profil_home_shimmer"
+                        android:layout_width="@dimen/_35sdp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:adjustViewBounds="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/profile_image"
+                        app:shapeAppearance="@style/roundedImageViewRounded"
+                        android:foreground="@color/grey"/>
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:text="Driver Kepul"
+                            android:textColor="@color/blue_kepul"
+                            android:textSize="@dimen/_8sdp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_2sdp"
+                            android:fontFamily="@font/montserrat_bold"
+                            android:text="Rizal Kambuaya"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp"
+                            android:foreground="@color/grey"/>
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_2sdp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Rate"
+                        android:textColor="@color/blue_kepul"
+                        android:textSize="@dimen/_8sdp"
+                        android:foreground="@color/grey"/>
+
+                    <TextView
+                        android:id="@+id/persent_shimmer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="@dimen/_15sdp"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="50%"
+                        android:textColor="@color/blue_kepul"
+                        android:textSize="@dimen/_8sdp"
+                        android:foreground="@color/grey"/>
+
+                </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
             </RelativeLayout>
 
             <RelativeLayout
@@ -120,11 +200,13 @@
                 android:elevation="@dimen/_2sdp">
 
                 <LinearLayout
+                    android:id="@+id/vehicle"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
                     android:layout_marginStart="@dimen/_15sdp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:visibility="visible">
 
                     <TextView
                         android:layout_width="0dp"
@@ -146,13 +228,59 @@
                         android:layout_marginEnd="@dimen/_5sdp"/>
 
                     <ImageView
-                        android:id="@+id/img_vehicle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:id="@+id/icn_vehicle"
+                        android:layout_width="@dimen/_15sdp"
+                        android:layout_height="@dimen/_15sdp"
                         android:src="@drawable/icn_motorcycle"
                         android:layout_marginEnd="@dimen/_15sdp"/>
 
                 </LinearLayout>
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/vehicle_shimmer"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:shimmer_auto_start="true"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:text="Jenis Kendaraan"
+                            android:textColor="@color/grey"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:textSize="@dimen/_8sdp"/>
+
+                        <TextView
+                            android:id="@+id/name_vehicle_shimmer"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Becak"
+                            android:textColor="@color/blue_kepul"
+                            android:textSize="@dimen/_8sdp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:foreground="@color/grey"/>
+
+                        <ImageView
+                            android:id="@+id/icn_vehicle_shimmer"
+                            android:layout_width="@dimen/_15sdp"
+                            android:layout_height="@dimen/_15sdp"
+                            android:src="@drawable/icn_motorcycle"
+                            android:layout_marginEnd="@dimen/_15sdp"
+                            android:foreground="@color/grey"/>
+
+                    </LinearLayout>
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
             </RelativeLayout>
 

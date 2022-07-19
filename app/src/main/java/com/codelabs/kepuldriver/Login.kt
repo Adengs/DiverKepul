@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import android.view.WindowManager
 import android.widget.Toast
-import com.codelabs.kepuldriver.api.ApiConfig
 import com.codelabs.kepuldriver.api.ApiMember
 import com.codelabs.kepuldriver.databinding.ActivityLoginBinding
 import com.codelabs.kepuldriver.helper.SharedPreference
@@ -16,7 +15,6 @@ import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.math.log
 
 class Login : AppCompatActivity() {
     lateinit var sph: SharedPreference
@@ -40,7 +38,7 @@ class Login : AppCompatActivity() {
             login()
         }
         binding.textForget.setOnClickListener {
-            startActivity(Intent(this, ChangePassword::class.java))
+            startActivity(Intent(this, ForgetPassword::class.java))
         }
     }
 
@@ -72,6 +70,7 @@ class Login : AppCompatActivity() {
                             Toast.makeText(this@Login, logresponse.message, Toast.LENGTH_LONG)
                                 .show()
                             sph.saveAuthToken(logresponse.data?.token.toString())
+                            sph.savePassword(binding.textPass.text.toString())
                             startActivity(Intent(this@Login, MainActivity::class.java))
                             Log.e("Auth", logresponse.toString())
                             sph.put(login = true)

@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
-import com.codelabs.kepuldriver.databinding.ActivityChangePasswordBinding
 import com.codelabs.kepuldriver.databinding.ActivityEmailVerificationBinding
 
 class EmailVerification : AppCompatActivity() {
@@ -24,7 +23,7 @@ class EmailVerification : AppCompatActivity() {
 
     private fun setEvent() {
         binding.btnBack.setOnClickListener {
-            startActivity(Intent(this, ChangePassword::class.java))
+            startActivity(Intent(this, ForgetPassword::class.java))
         }
         binding.btnSend.setOnClickListener {
             startActivity(Intent(this, SetPassword::class.java))

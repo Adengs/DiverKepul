@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".DetailOrder">
+    tools:context=".DetailOrder"
+    android:focusable="false"
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:id="@+id/lay_toolbar"
@@ -101,13 +103,23 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <TextView
+                    android:id="@+id/text_hastag"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/montserrat_regular"
+                    android:text="#"
+                    android:textColor="@color/grey"
+                    android:textSize="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_5sdp"/>
+
+                <TextView
                     android:id="@+id/text_order_code"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_1sdp"
                     android:layout_weight="1"
                     android:fontFamily="@font/montserrat_regular"
-                    android:text="#12312312342223"
+                    android:text="12312312342223"
                     android:textColor="@color/grey"
                     android:textSize="@dimen/_10sdp" />
 
@@ -163,11 +175,12 @@
             <RelativeLayout
                 android:id="@+id/lay_cust"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/_255sdp"
+                android:layout_height="wrap_content"
                 android:padding="@dimen/_15sdp"
                 app:layout_constraintTop_toBottomOf="@+id/space">
 
                 <RelativeLayout
+                    android:id="@+id/lay_order"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="visible">
@@ -229,21 +242,38 @@
 
                                 <TextView
                                     android:id="@+id/text_range"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:text="3.1"
+                                    android:textColor="@color/grey"
+                                    android:textSize="@dimen/_10sdp" />
+
+                                <TextView
+                                    android:id="@+id/text_km"
                                     android:layout_width="0dp"
                                     android:layout_height="wrap_content"
                                     android:layout_weight="1"
                                     android:fontFamily="@font/montserrat_regular"
-                                    android:text="3.1 Km"
+                                    android:text="  Km"
                                     android:textColor="@color/grey"
                                     android:textSize="@dimen/_10sdp" />
 
+                                <TextView
+                                    android:id="@+id/text_rp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/montserrat_regular"
+                                    android:text="Rp. "
+                                    android:textColor="@color/black"
+                                    android:textSize="@dimen/_10sdp" />
 
                                 <TextView
                                     android:id="@+id/text_budget"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:fontFamily="@font/montserrat_regular"
-                                    android:text="Rp. 300.000"
+                                    android:text="300.000"
                                     android:textColor="@color/black"
                                     android:textSize="@dimen/_10sdp" />
 
@@ -253,24 +283,22 @@
 
                     </LinearLayout>
 
-                    <androidx.constraintlayout.widget.ConstraintLayout
+                    <LinearLayout
                         android:id="@+id/lay_track"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_80sdp"
+                        android:layout_height="wrap_content"
                         android:layout_below="@id/image_profil_home"
                         android:layout_marginTop="@dimen/_30sdp"
-                        android:orientation="horizontal">
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical">
 
                         <LinearLayout
                             android:id="@+id/track"
                             android:layout_width="@dimen/_20sdp"
-                            android:layout_height="match_parent"
+                            android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/_7sdp"
-                            android:layout_marginTop="@dimen/_5sdp"
                             android:gravity="center_horizontal"
-                            android:orientation="vertical"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:orientation="vertical">
 
                             <ImageView
                                 android:layout_width="@dimen/_11sdp"
@@ -291,20 +319,18 @@
 
                         <LinearLayout
                             android:id="@+id/lay_pickup"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/_30sdp"
-                            android:layout_marginEnd="@dimen/_30sdp"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/_19sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
                             android:layout_toEndOf="@+id/track"
-                            android:orientation="horizontal"
-                            app:layout_constraintEnd_toStartOf="@+id/lay_km"
-                            app:layout_constraintStart_toEndOf="@+id/track"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
 
                             <LinearLayout
                                 android:id="@+id/lay_text_pickup"
                                 android:layout_width="wrap_content"
-                                android:layout_height="match_parent"
+                                android:layout_height="wrap_content"
                                 android:orientation="vertical">
 
                                 <TextView
@@ -316,6 +342,7 @@
                                     android:textSize="@dimen/_10sdp" />
 
                                 <TextView
+                                    android:id="@+id/address_sender"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_5sdp"
@@ -340,6 +367,7 @@
                                     android:textSize="@dimen/_10sdp" />
 
                                 <TextView
+                                    android:id="@+id/address_reciper"
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginTop="@dimen/_5sdp"
@@ -355,17 +383,14 @@
                         <LinearLayout
                             android:id="@+id/lay_km"
                             android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_height="wrap_content"
                             android:gravity="center_vertical"
-                            android:orientation="vertical"
-                            app:layout_constraintStart_toEndOf="@+id/lay_pickup"
-                            app:layout_constraintTop_toTopOf="parent">
+                            android:orientation="vertical">
 
                             <TextView
+                                android:id="@+id/range"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/_10sdp"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:gravity="center"
                                 android:text="5"
@@ -375,27 +400,28 @@
                             <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:layout_marginEnd="@dimen/_10sdp"
                                 android:fontFamily="@font/montserrat_regular"
                                 android:gravity="center"
                                 android:text="Km"
+                                android:textColor="@color/grey"
                                 android:textSize="@dimen/_10sdp" />
 
                         </LinearLayout>
 
-                    </androidx.constraintlayout.widget.ConstraintLayout>
+                    </LinearLayout>
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_60sdp"
                         android:layout_below="@+id/lay_track"
-                        android:layout_marginTop="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:background="@color/white"
+                        app:cardCornerRadius="@dimen/_4sdp"
                         app:cardElevation="0dp">
 
                         <RelativeLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="@dimen/_6sdp"
                             android:background="@drawable/img_map">
 
                             <LinearLayout
@@ -739,14 +765,14 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     tools:itemCount="3"
                     tools:listitem="@layout/item_type"
-                    android:visibility="visible"/>
+                    android:visibility="gone"/>
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:id="@+id/shimmer_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     app:shimmer_auto_start="true"
-                    android:visibility="gone">
+                    android:visibility="visible">
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -782,10 +808,21 @@
                         android:id="@+id/total_berat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="18 Kg"
+                        android:text="18"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_14sdp"
                         android:fontFamily="@font/montserrat_regular"/>
+
+                    <TextView
+                        android:id="@+id/total_kg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:text="Kg"
+                        android:textColor="@color/black"
+                        android:textSize="@dimen/_14sdp"
+                        android:fontFamily="@font/montserrat_regular"/>
+
 
                 </LinearLayout>
 

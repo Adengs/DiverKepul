@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".EditProfile"
-    android:background="@color/white">
+    android:background="@color/white"
+    android:focusable="false"
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:id="@+id/lay_toolbar"
@@ -35,14 +37,16 @@
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
+        android:id="@+id/scoreview"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/lay_toolbar"
-        android:layout_marginTop="@dimen/_55sdp">
+        app:layout_constraintBottom_toTopOf="@+id/btn_save"
+        android:layout_marginTop="@dimen/_10sdp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/lay_card_profile"
@@ -62,14 +66,14 @@
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                android:layout_marginTop="@dimen/_10sdp"/>
+                android:layout_marginTop="@dimen/_10sdp" />
 
             <RelativeLayout
                 android:id="@+id/lay_text_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/image_profil"
-                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_30sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center_vertical">
@@ -77,44 +81,42 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Nama"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_10sdp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Nama"
-                            android:textColor="@color/grey"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:textSize="@dimen/_10sdp"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxStrokeColor="@color/blue_kepul"
+                        app:boxStrokeWidth="1dp"
+                        app:boxStrokeWidthFocused="1dp"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
 
-                        <TextView
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/text_name"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:imeOptions="flagNoExtractUi"
+                            android:maxWidth="@dimen/_200sdp"
+                            android:paddingStart="0dp"
+                            android:paddingTop="@dimen/_3sdp"
                             android:text="Rizal Kambuaya"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11sdp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:maxWidth="@dimen/_200sdp"/>
+                            android:singleLine="true"/>
 
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/edit_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ubah"
-                        android:textColor="@color/blue_kepul"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textSize="@dimen/_10sdp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -125,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/lay_text_name"
-                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center_vertical">
@@ -133,44 +135,44 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
+                    android:orientation="vertical"
+                    android:layout_marginTop="@dimen/_5sdp">
 
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Email"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_10sdp" />
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Email"
-                            android:textColor="@color/grey"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:textSize="@dimen/_10sdp"/>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxStrokeColor="@color/blue_kepul"
+                        app:boxStrokeWidth="1dp"
+                        app:boxStrokeWidthFocused="1dp"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
 
-                        <TextView
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/text_email"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:imeOptions="flagNoExtractUi"
+                            android:inputType="textEmailAddress"
+                            android:maxWidth="@dimen/_200sdp"
+                            android:paddingStart="0dp"
+                            android:paddingTop="@dimen/_3sdp"
                             android:text="rizalkambuaya@gmail.com"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_10sdp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:maxWidth="@dimen/_200sdp"/>
+                            android:singleLine="true"/>
 
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/edit_email"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ubah"
-                        android:textColor="@color/blue_kepul"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textSize="@dimen/_10sdp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -181,22 +183,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/lay_text_email"
-                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center_vertical">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:layout_marginTop="@dimen/_5sdp">
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -206,28 +202,34 @@
                             android:fontFamily="@font/montserrat_regular"
                             android:textSize="@dimen/_10sdp"/>
 
-                        <TextView
+                        <com.google.android.material.textfield.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            app:boxBackgroundColor="@color/white"
+                            app:boxStrokeColor="@color/blue_kepul"
+                            app:boxStrokeWidth="1dp"
+                            app:boxStrokeWidthFocused="1dp"
+                            app:hintEnabled="false"
+                            app:hintAnimationEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/text_phone"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="081370937168"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11sdp"
                             android:fontFamily="@font/montserrat_regular"
-                            android:layout_marginTop="@dimen/_3sdp"/>
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:paddingTop="@dimen/_3sdp"
+                            android:paddingStart="0dp"
+                            android:imeOptions="flagNoExtractUi"
+                            android:inputType="number"
+                            android:singleLine="true"/>
+
+                        </com.google.android.material.textfield.TextInputLayout>
 
                     </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/edit_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ubah"
-                        android:textColor="@color/blue_kepul"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textSize="@dimen/_10sdp"/>
-
-                </LinearLayout>
 
             </RelativeLayout>
 
@@ -236,7 +238,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/lay_text_phone"
-                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_15sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center_vertical">
@@ -244,44 +246,42 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Alamat Utama"
-                            android:textColor="@color/grey"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:textSize="@dimen/_10sdp"/>
-
-                        <TextView
-                            android:id="@+id/text_address"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Jln. Gurilla No 123, Medan 20000 Sumatera Utara"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_11sdp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:layout_marginTop="@dimen/_3sdp"
-                            android:maxWidth="@dimen/_200sdp"/>
-
-                    </LinearLayout>
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/edit_address"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Ubah"
-                        android:textColor="@color/blue_kepul"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textSize="@dimen/_10sdp"/>
+                        android:text="Alamat Utama"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:boxBackgroundColor="@color/white"
+                        app:boxStrokeColor="@color/blue_kepul"
+                        app:boxStrokeWidth="1dp"
+                        app:boxStrokeWidthFocused="1dp"
+                        app:hintAnimationEnabled="false"
+                        app:hintEnabled="false">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/text_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:fontFamily="@font/montserrat_regular"
+                            android:imeOptions="flagNoExtractUi"
+                            android:maxWidth="@dimen/_200sdp"
+                            android:paddingStart="0dp"
+                            android:paddingTop="@dimen/_3sdp"
+                            android:text="Jln. Gurilla No 123, Medan 20000 Sumatera Utara"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_11sdp" />
+
+                    </com.google.android.material.textfield.TextInputLayout>
 
                 </LinearLayout>
 
@@ -292,7 +292,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:layout_constraintTop_toBottomOf="@+id/lay_text_address"
-                android:layout_marginHorizontal="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_25sdp"
                 android:layout_marginTop="@dimen/_35sdp"
                 app:layout_constraintStart_toStartOf="parent"
                 android:gravity="center_vertical">
@@ -319,13 +319,15 @@
 
                         <TextView
                             android:id="@+id/change_pass"
-                            android:layout_width="wrap_content"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:text="***********"
                             android:textColor="@color/black"
                             android:textSize="@dimen/_11sdp"
                             android:fontFamily="@font/montserrat_regular"
-                            android:layout_marginTop="@dimen/_3sdp"/>
+                            android:layout_marginTop="@dimen/_3sdp"
+                            android:paddingTop="@dimen/_3sdp"
+                            android:layout_marginBottom="@dimen/_20sdp"/>
 
                     </LinearLayout>
 
@@ -336,82 +338,12 @@
                         android:text="Ubah"
                         android:textColor="@color/blue_kepul"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textSize="@dimen/_10sdp"/>
+                        android:textSize="@dimen/_10sdp"
+                        android:visibility="visible"/>
 
                 </LinearLayout>
 
             </RelativeLayout>
-
-            <RelativeLayout
-                android:id="@+id/lay_con_pass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@+id/lay_change_pass"
-                android:layout_marginHorizontal="@dimen/_20sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                android:gravity="center_vertical">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical">
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="wrap_content"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Konfirmasi Password"
-                            android:textColor="@color/grey"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:textSize="@dimen/_10sdp"/>
-
-                        <TextView
-                            android:id="@+id/con_pass"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="***********"
-                            android:textColor="@color/black"
-                            android:textSize="@dimen/_11sdp"
-                            android:fontFamily="@font/montserrat_regular"
-                            android:layout_marginTop="@dimen/_3sdp"/>
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/edit_con_pass"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Ubah"
-                        android:textColor="@color/blue_kepul"
-                        android:fontFamily="@font/montserrat_regular"
-                        android:textSize="@dimen/_10sdp"/>
-
-                </LinearLayout>
-
-            </RelativeLayout>
-
-                <TextView
-                    android:id="@+id/btn_save"
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_45sdp"
-                    android:background="@drawable/icn_btn_blue"
-                    android:layout_marginTop="@dimen/_30sdp"
-                    app:layout_constraintTop_toBottomOf="@+id/lay_con_pass"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    android:layout_marginBottom="@dimen/_10sdp"
-                    android:layout_marginHorizontal="@dimen/_20sdp"
-                    android:text="Simpan"
-                    android:textColor="@color/white"
-                    android:gravity="center"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:textSize="@dimen/_12sdp"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -675,5 +607,20 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/btn_save"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_45sdp"
+        android:background="@drawable/icn_btn_blue"
+        android:layout_marginTop="@dimen/_30sdp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_25sdp"
+        android:text="Simpan"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:fontFamily="@font/montserrat_regular"
+        android:textSize="@dimen/_12sdp"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

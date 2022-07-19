@@ -5,7 +5,9 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".fragment.HomeFragment">
+    tools:context=".fragment.HomeFragment"
+    android:focusable="false"
+    android:focusableInTouchMode="true">
 
     <RelativeLayout
         android:id="@+id/lay_toolbar"
@@ -39,12 +41,14 @@
     </RelativeLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lay_toolbar">
 
         <androidx.core.widget.NestedScrollView
+            android:id="@+id/scoreview"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -52,66 +56,32 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <LinearLayout
-                    android:id="@+id/lay_profil_home"
+                <RelativeLayout
+                    android:id="@+id/lay_profil"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    android:orientation="horizontal"
+                    android:layout_height="@dimen/_35sdp"
                     app:layout_constraintTop_toTopOf="parent"
-                    android:visibility="visible">
-
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:id="@+id/image_profil_home"
-                        android:layout_width="@dimen/_35sdp"
-                        android:layout_height="@dimen/_35sdp"
-                        android:adjustViewBounds="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/profile_image"
-                        app:shapeAppearance="@style/roundedImageViewRounded" />
-
-                    <TextView
-                        android:id="@+id/text_name"
-                        android:layout_width="wrap_content"
-                        android:layout_height="match_parent"
-                        android:layout_marginStart="@dimen/_10sdp"
-                        android:fontFamily="@font/montserrat_extrabold"
-                        android:gravity="center_vertical"
-                        android:text="Rizal Kambuaya"
-                        android:textColor="@color/black"
-                        android:textSize="@dimen/_12sdp" />
-
-                </LinearLayout>
-
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmer_profile_home"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_25sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:visibility="gone">
+                    android:layout_marginTop="@dimen/_25sdp">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
+                        android:id="@+id/lay_profil_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        android:orientation="horizontal"
+                        android:visibility="visible">
 
                         <com.google.android.material.imageview.ShapeableImageView
-                            android:id="@+id/image_profil_home_shimmer"
+                            android:id="@+id/image_profil_home"
                             android:layout_width="@dimen/_35sdp"
                             android:layout_height="@dimen/_35sdp"
                             android:adjustViewBounds="true"
                             android:scaleType="centerCrop"
                             android:src="@drawable/profile_image"
-                            app:shapeAppearance="@style/roundedImageViewRounded"
-                            android:foreground="@color/grey"/>
+                            app:shapeAppearance="@style/roundedImageViewRounded" />
 
                         <TextView
-                            android:id="@+id/text_name_shimmer"
+                            android:id="@+id/text_name"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_marginStart="@dimen/_10sdp"
@@ -119,12 +89,52 @@
                             android:gravity="center_vertical"
                             android:text="Rizal Kambuaya"
                             android:textColor="@color/black"
-                            android:textSize="@dimen/_12sdp"
-                            android:foreground="@color/grey"/>
+                            android:textSize="@dimen/_12sdp" />
 
                     </LinearLayout>
 
-                </com.facebook.shimmer.ShimmerFrameLayout>
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_profile_home"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_35sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shimmer_auto_start="true"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <com.google.android.material.imageview.ShapeableImageView
+                                android:id="@+id/image_profil_home_shimmer"
+                                android:layout_width="@dimen/_35sdp"
+                                android:layout_height="@dimen/_35sdp"
+                                android:adjustViewBounds="true"
+                                android:scaleType="centerCrop"
+                                android:src="@drawable/profile_image"
+                                app:shapeAppearance="@style/roundedImageViewRounded"
+                                android:foreground="@color/grey"/>
+
+                            <TextView
+                                android:id="@+id/text_name_shimmer"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_marginStart="@dimen/_10sdp"
+                                android:fontFamily="@font/montserrat_extrabold"
+                                android:gravity="center_vertical"
+                                android:text="Rizal Kambuaya...................................."
+                                android:textColor="@color/black"
+                                android:textSize="@dimen/_12sdp"
+                                android:foreground="@color/grey"/>
+
+                        </LinearLayout>
+
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                </RelativeLayout>
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/lay_ratting"
@@ -133,7 +143,7 @@
                     android:layout_marginHorizontal="@dimen/_20sdp"
                     android:layout_marginTop="@dimen/_20sdp"
                     android:background="@drawable/background_ratting"
-                    app:layout_constraintTop_toBottomOf="@+id/lay_profil_home">
+                    app:layout_constraintTop_toBottomOf="@+id/lay_profil">
 
                     <LinearLayout
                         android:id="@+id/order_aktif"
@@ -255,7 +265,7 @@
                 <RelativeLayout
                     android:id="@+id/lay_adapter"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@color/grey_background"
                     app:layout_constraintTop_toBottomOf="@+id/lay_ratting">
@@ -287,7 +297,9 @@
                     <com.facebook.shimmer.ShimmerFrameLayout
                         android:id="@+id/shimmer_order"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        app:shimmer_auto_start="true"
+                        android:layout_marginTop="@dimen/_30sdp">
 
                         <LinearLayout
                             android:layout_width="match_parent"

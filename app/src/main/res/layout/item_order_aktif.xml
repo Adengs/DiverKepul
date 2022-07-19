@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:foreground="?selectableItemBackground"
     android:paddingTop="@dimen/_5sdp"
     android:paddingBottom="@dimen/_5sdp">
 
@@ -33,7 +32,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:fontFamily="@font/montserrat_regular"
-                android:text="#202109153214"
+                android:text="#"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/no_order"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_1sdp"
+                android:fontFamily="@font/montserrat_regular"
+                android:text="202109153214"
                 android:textColor="@color/black"
                 android:textSize="@dimen/_10sdp" />
 
@@ -101,19 +110,48 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="3.1 Km"
+                        android:text="3.1"
                         android:textColor="@color/grey"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/text_km"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Km"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/text_berat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="18"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:textColor="@color/blue_kepul"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
                         android:id="@+id/text_kg"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_3sdp"
                         android:layout_weight="1"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="18 Kg"
+                        android:text="Kg"
                         android:textColor="@color/blue_kepul"
+                        android:textSize="@dimen/_10sdp" />
+
+                    <TextView
+                        android:id="@+id/text_rp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:text="Rp."
+                        android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
 
                     <TextView
@@ -121,7 +159,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/montserrat_regular"
-                        android:text="Rp. 300.000"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:text="300.000"
                         android:textColor="@color/black"
                         android:textSize="@dimen/_10sdp" />
 
@@ -164,6 +203,7 @@
                     android:textSize="@dimen/_10sdp" />
 
                 <TextView
+                    android:id="@+id/sender_address"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_5sdp"
@@ -182,6 +222,7 @@
                 android:orientation="vertical">
 
                 <TextView
+                    android:id="@+id/range"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/montserrat_regular"
@@ -196,6 +237,7 @@
                     android:fontFamily="@font/montserrat_regular"
                     android:gravity="center"
                     android:text="Km"
+                    android:textColor="@color/grey"
                     android:textSize="@dimen/_10sdp" />
 
             </LinearLayout>
@@ -203,7 +245,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/btn_send"
+            android:id="@+id/btn_call"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_45sdp"
             android:layout_below="@+id/lay_pickup"
@@ -213,7 +255,7 @@
             android:gravity="center"
             android:text="Telepon"
             android:textColor="@color/blue_kepul"
-            android:textSize="@dimen/_12sdp"/>
+            android:textSize="@dimen/_12sdp" />
 
 
     </RelativeLayout>

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.codelabs.kepuldriver.databinding.ItemOrderBinding
 import com.codelabs.kepuldriver.databinding.ItemTypeValidationBinding
+import com.codelabs.kepuldriver.model.OrderResponse
 
 class TypeValidationAdapter (val data : List<String>) : RecyclerView.Adapter<TypeValidationAdapter.ViewHolder>() {
     var onClick : ((String) -> Unit?)? = null

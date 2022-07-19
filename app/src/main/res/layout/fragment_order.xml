@@ -90,45 +90,43 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintTop_toBottomOf="@+id/toogle_group"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@+id/material_button"
-            android:layout_marginTop="@dimen/_10sdp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="@dimen/_15sdp">
 
             <androidx.core.widget.NestedScrollView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
+                <RelativeLayout
                     android:id="@+id/lay_aktif"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content">
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recycleView_order_aktif"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:visibility="visible"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/item_order_aktif"
-                        tools:itemCount="1"/>
+                        tools:itemCount="1"
+                        tools:listitem="@layout/item_order_aktif" />
 
                     <com.facebook.shimmer.ShimmerFrameLayout
                         android:id="@+id/shimmer_order_aktif"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/recycleView_order_aktif">
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintTop_toBottomOf="@+id/recycleView_order_aktif"
+                        app:shimmer_auto_start="true">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
                             <include layout="@layout/item_order_aktif_shimmer" />
 
@@ -136,6 +134,38 @@
 
                             <include layout="@layout/item_order_aktif_shimmer" />
 
+                        </LinearLayout>
+
+                    </com.facebook.shimmer.ShimmerFrameLayout>
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/recycleView_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/recycleView_order_aktif"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:visibility="visible"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        tools:itemCount="3"
+                        tools:listitem="@layout/item_order" />
+
+                    <com.facebook.shimmer.ShimmerFrameLayout
+                        android:id="@+id/shimmer_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:shimmer_auto_start="true">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            android:visibility="visible">
+
+                            <include layout="@layout/shimmer_order" />
+
+                            <include layout="@layout/shimmer_order" />
                         </LinearLayout>
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
@@ -144,24 +174,27 @@
                         android:id="@+id/recycleView_order_history"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginTop="@dimen/_10sdp"
                         android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:visibility="gone"
                         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                        tools:listitem="@layout/item_order_history"
-                        tools:itemCount="2"/>
+                        tools:itemCount="2"
+                        tools:listitem="@layout/item_order_history" />
 
                     <com.facebook.shimmer.ShimmerFrameLayout
-                        android:id="@+id/shimmer_order"
+                        android:id="@+id/shimmer_order_history"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/recycleView_order_history">
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintTop_toBottomOf="@+id/recycleView_order_history"
+                        app:shimmer_auto_start="true">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
                             <include layout="@layout/item_order_history_shimmer" />
 
@@ -173,11 +206,9 @@
 
                     </com.facebook.shimmer.ShimmerFrameLayout>
 
-                </androidx.constraintlayout.widget.ConstraintLayout>
+                </RelativeLayout>
 
             </androidx.core.widget.NestedScrollView>
-
-        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
     </FrameLayout>
 

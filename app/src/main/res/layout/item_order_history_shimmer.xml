@@ -256,21 +256,6 @@
 
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/btn_send"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_45sdp"
-            android:layout_below="@+id/lay_track"
-            android:layout_marginTop="@dimen/_25sdp"
-            android:background="@drawable/outline_blue"
-            android:fontFamily="@font/montserrat_regular"
-            android:gravity="center"
-            android:text="Telepon"
-            android:textColor="@color/blue_kepul"
-            android:textSize="@dimen/_12sdp"
-            android:foreground="@color/grey"/>
-
-
     </RelativeLayout>
 
 </RelativeLayout>

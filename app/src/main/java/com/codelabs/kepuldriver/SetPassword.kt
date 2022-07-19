@@ -27,7 +27,7 @@ class SetPassword : AppCompatActivity() {
             startActivity(Intent(this, EmailVerification::class.java))
         }
         binding.btnSubmit.setOnClickListener {
-            startActivity(Intent(this, SplashScreen::class.java))
+            startActivity(Intent(this, Login::class.java))
         }
     }
 }
