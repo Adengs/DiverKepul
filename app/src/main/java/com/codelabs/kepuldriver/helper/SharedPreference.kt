@@ -2,6 +2,7 @@ package com.codelabs.kepuldriver.helper
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.widget.Toast
 
 class SharedPreference(context: Context) {
     private val myPref = "My_Pref"
@@ -17,12 +18,11 @@ class SharedPreference(context: Context) {
         const val PASSWORD = "password"
         const val LATITUDE = "latitude"
         const val LONGITUDE = "longitude"
-        const val LATITUDESEND = "latitude"
-        const val LONGITUDESEND = "longitude"
-        const val LATITUDEREC = "latitude"
-        const val LONGITUDEREC = "longitude"
         const val ORDERCODE = "ordercode"
-        const val CLICKED = "acceptorder"
+        const val EMAIL = "email"
+        const val VERIFCODE = "verification_code"
+        const val READYSTATUS = "ready"
+        const val ORDERCODEA = "ordercode"
     }
 
 
@@ -78,65 +78,56 @@ class SharedPreference(context: Context) {
         return  sharedPreference.getString(LONGITUDE, "")
     }
 
-    //function save latitude sender
-    fun savelatitudesend(lat: String){
-        sharedPreference.edit().putString(LATITUDESEND, lat).apply()
-    }
-
-    //function fetch latitude sender
-    fun fetchlatitudesend(): String? {
-        return  sharedPreference.getString(LATITUDESEND, "")
-    }
-
-    //function save longitude sender
-    fun savelongitudesend(long: String){
-        sharedPreference.edit().putString(LONGITUDESEND, long).apply()
-    }
-
-    //function fetch longitude sender
-    fun fetchlongitudesend(): String? {
-        return  sharedPreference.getString(LONGITUDE, "")
-    }
-
-    //function save latitude recipier
-    fun savelatituderec(lat: String){
-        sharedPreference.edit().putString(LATITUDEREC, lat).apply()
-    }
-
-    //function fetch latitude recipier
-    fun fetchlatituderec(): String? {
-        return  sharedPreference.getString(LATITUDEREC, "")
-    }
-
-    //function save longitude recipier
-    fun savelongituderec(long: String){
-        sharedPreference.edit().putString(LONGITUDEREC, long).apply()
-    }
-
-    //function fetch longitude recipier
-    fun fetchlongituderec(): String? {
-        return  sharedPreference.getString(LONGITUDEREC, "")
-    }
-
     //function save ordercode
     fun saveordercode(code: String){
         sharedPreference.edit().putString(ORDERCODE, code).apply()
     }
 
-    //function fetch longitude recipier
+    //function fetch ordercode
     fun fetchordercode(): String? {
         return  sharedPreference.getString(ORDERCODE, "")
     }
 
-    //boolean put order acc
-    fun putorderacc(acc: Boolean){
+    //function save email
+    fun saveemail(email: String){
+        sharedPreference.edit().putString(EMAIL, email).apply()
+    }
+
+    //function fetch email
+    fun fetchemail(): String? {
+        return  sharedPreference.getString(EMAIL, "")
+    }
+
+    //function save code
+    fun savecode(code: String){
+        sharedPreference.edit().putString(VERIFCODE, code).apply()
+    }
+
+    //function fetch code
+    fun fetchcodee(): String? {
+        return  sharedPreference.getString(VERIFCODE, "")
+    }
+
+    //boolean put ready
+    fun ready(ready: Boolean){
         sharedPreference.edit()
-            .putBoolean(CLICKED, acc)
+            .putBoolean(READYSTATUS, ready)
             .apply()
     }
 
-    //boolean get order acc
-    fun getorderacc() : Boolean{
-        return sharedPreference.getBoolean(CLICKED, false)
+    //boolean get ready
+    fun getReady() : Boolean{
+        return sharedPreference.getBoolean(READYSTATUS, true)
     }
+
+    //function save ordercode aktif
+    fun saveordercodeaktif(code: String){
+        sharedPreference.edit().putString(ORDERCODEA, code).apply()
+    }
+
+    //function fetch ordercode aktif
+    fun fetchordercodeaktif(): String? {
+        return  sharedPreference.getString(ORDERCODEA, "")
+    }
+
 }

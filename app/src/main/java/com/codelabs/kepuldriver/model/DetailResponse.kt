@@ -1,4 +1,5 @@
 package com.codelabs.kepuldriver.model
+import android.net.Uri
 import com.google.gson.annotations.SerializedName
 
 
@@ -27,6 +28,10 @@ data class DetailResponse(
         var recipientName: String?,
         @SerializedName("reservation_code")
         var reservationCode: String?,
+        @SerializedName("reservation_type")
+        var reservationType: String?,
+        @SerializedName("reservation_type_color")
+        var reservationTypeColor: String?,
         @SerializedName("sender_address")
         var senderAddress: String?,
         @SerializedName("sender_image")
@@ -45,60 +50,61 @@ data class DetailResponse(
         var status: String?
     ) {
         data class Detail(
+            var imagePath : Uri?,
             @SerializedName("category_name")
-            var categoryName: String?,
+            var categoryName: String? = null,
             @SerializedName("created_at")
-            var createdAt: String?,
+            var createdAt: String? = null,
             @SerializedName("currency")
-            var currency: String?,
+            var currency: String? = null,
             @SerializedName("is_special_deals")
-            var isSpecialDeals: String?,
+            var isSpecialDeals: String? = null,
             @SerializedName("notes")
-            var notes: Any?,
+            var notes: Any? = null,
             @SerializedName("ppn")
-            var ppn: Int?,
+            var ppn: Int? = null,
             @SerializedName("ppn_price")
-            var ppnPrice: Int?,
+            var ppnPrice: Int? = null,
             @SerializedName("price")
-            var price: Int?,
+            var price: Int? = null,
             @SerializedName("price_before_discount")
-            var priceBeforeDiscount: Int?,
+            var priceBeforeDiscount: Int? = null,
             @SerializedName("price_before_ppn")
-            var priceBeforePpn: Int?,
+            var priceBeforePpn: Int? = null,
             @SerializedName("product_code")
-            var productCode: String?,
+            var productCode: String? = null,
             @SerializedName("product_image")
-            var productImage: String?,
+            var productImage: String? = null,
             @SerializedName("product_image_driver")
-            var productImageDriver: Any?,
+            var productImageDriver: Any? = null,
             @SerializedName("product_name")
-            var productName: String?,
+            var productName: String? = null,
             @SerializedName("quantity")
-            var quantity: Int?,
+            var quantity: Int? = null,
             @SerializedName("quantity_by_customer")
-            var quantityByCustomer: Int?,
+            var quantityByCustomer: Int? = null,
             @SerializedName("quantity_by_driver")
-            var quantityByDriver: Int?,
+            var quantityByDriver: Int? = null,
             @SerializedName("quantity_by_warehouse")
-            var quantityByWarehouse: Int?,
+            var quantityByWarehouse: Int? = null,
             @SerializedName("reservation_detail_id")
-            var reservationDetailId: Int?,
+            var reservationDetailId: Int? = null,
             @SerializedName("reservation_id")
-            var reservationId: Int?,
+            var reservationId: Int? = null,
             @SerializedName("saving_price")
-            var savingPrice: Int?,
+            var savingPrice: Int? = null,
             @SerializedName("subtotal")
-            var subtotal: Int?,
+            var subtotal: Int ? = null,
             @SerializedName("unit")
-            var unit: String?,
+            var unit: String? = null,
             @SerializedName("updated_at")
-            var updatedAt: String?,
+            var updatedAt: String? = null,
             @SerializedName("warehouse_note")
-            var warehouseNote: String?,
+            var warehouseNote: String? = null,
             @SerializedName("weight")
-            var weight: Int?,
+            var weight: Int? = null,
             @SerializedName("weight_unit")
-            var weightUnit: String?
+            var weightUnit: String? = null
         )
     }
 }

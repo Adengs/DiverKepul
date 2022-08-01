@@ -44,7 +44,9 @@ class ProfileFragment : Fragment() {
         }
         binding.layLogout.setOnClickListener {
             startActivity(Intent(view?.context, Login::class.java))
-            sph.getBoolean()
+            sph.put(false)
+            sph.ready(true)
+            activity?.finish()
         }
     }
 
@@ -67,13 +69,18 @@ class ProfileFragment : Fragment() {
 
                 if (responseBody != null){
                     if (response.code() == 200){
-                        Glide.with(this@ProfileFragment)
-                            .load(responseBody.data?.profile?.image.toString())
-                            .into(image)
+
+                        if (activity != null){
+                            Glide.with(this@ProfileFragment)
+                                .load(responseBody.data?.profile?.image.toString())
+                                .into(image)
+
+                            Glide.with(this@ProfileFragment)
+                                .load(responseBody.data?.transportation?.image.toString())
+                                .into(icnvehicle)
+                        }
+
                         binding.textName.text = responseBody.data?.profile?.name.toString()
-                        Glide.with(this@ProfileFragment)
-                            .load(responseBody.data?.transportation?.image.toString())
-                            .into(icnvehicle)
                         binding.nameVehicle.text = responseBody.data?.transportation?.name.toString()
 
                         binding.layProfilProfilShimmer.visibility = View.GONE

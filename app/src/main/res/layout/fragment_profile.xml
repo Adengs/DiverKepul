@@ -75,7 +75,7 @@
                             android:fontFamily="@font/montserrat_regular"
                             android:text="Driver Kepul"
                             android:textColor="@color/blue_kepul"
-                            android:textSize="@dimen/_8sdp" />
+                            android:textSize="@dimen/_10sdp" />
 
                         <TextView
                             android:id="@+id/text_name"
@@ -97,7 +97,7 @@
                         android:fontFamily="@font/montserrat_regular"
                         android:text="Rate"
                         android:textColor="@color/blue_kepul"
-                        android:textSize="@dimen/_8sdp" />
+                        android:textSize="@dimen/_10sdp" />
 
                     <TextView
                         android:id="@+id/persent"
@@ -107,7 +107,7 @@
                         android:fontFamily="@font/montserrat_regular"
                         android:text="50%"
                         android:textColor="@color/blue_kepul"
-                        android:textSize="@dimen/_8sdp" />
+                        android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
 
@@ -215,7 +215,7 @@
                         android:text="Jenis Kendaraan"
                         android:textColor="@color/grey"
                         android:fontFamily="@font/montserrat_regular"
-                        android:textSize="@dimen/_8sdp"/>
+                        android:textSize="@dimen/_10sdp"/>
 
                     <TextView
                         android:id="@+id/name_vehicle"
@@ -223,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:text="Becak"
                         android:textColor="@color/blue_kepul"
-                        android:textSize="@dimen/_8sdp"
+                        android:textSize="@dimen/_10sdp"
                         android:fontFamily="@font/montserrat_regular"
                         android:layout_marginEnd="@dimen/_5sdp"/>
 

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/grey_background"
     tools:context=".fragment.HomeFragment"
     android:focusable="false"
     android:focusableInTouchMode="true">
@@ -12,31 +12,55 @@
     <RelativeLayout
         android:id="@+id/lay_toolbar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/_35sdp"
-        android:layout_marginHorizontal="@dimen/_20sdp"
-        android:layout_marginTop="@dimen/_10sdp"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:layout_marginStart="@dimen/_50sdp"
-            android:fontFamily="@font/montserrat_bold"
-            android:gravity="center_vertical"
-            android:text="Online"
-            android:textColor="@color/black"
-            android:textSize="@dimen/_14sdp" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginHorizontal="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:layout_editor_absoluteX="26dp">
 
-        <com.google.android.material.switchmaterial.SwitchMaterial
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:layout_centerVertical="true"
-            android:checked="true"
-            app:thumbTint="@color/white"
-            app:trackTint="@drawable/switch_color" />
+            <TextView
+                android:id="@+id/text_online"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center_vertical"
+                android:text="Online"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:visibility="visible"/>
+
+            <TextView
+                android:id="@+id/text_offline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginStart="@dimen/_50sdp"
+                android:fontFamily="@font/montserrat_bold"
+                android:gravity="center_vertical"
+                android:text="Offline"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14sdp"
+                android:visibility="gone"/>
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switch_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_centerVertical="true"
+                android:checked="true"
+                app:thumbTint="@color/white"
+                app:trackTint="@drawable/switch_color" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
 
@@ -45,6 +69,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lay_toolbar">
 
         <androidx.core.widget.NestedScrollView
@@ -54,15 +80,16 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/white">
 
                 <RelativeLayout
                     android:id="@+id/lay_profil"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_35sdp"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:layout_marginHorizontal="@dimen/_20sdp"
-                    android:layout_marginTop="@dimen/_25sdp">
+                    android:layout_marginTop="@dimen/_25sdp"
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <LinearLayout
                         android:id="@+id/lay_profil_home"
@@ -97,11 +124,11 @@
                         android:id="@+id/shimmer_profile_home"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_35sdp"
+                        android:visibility="gone"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:shimmer_auto_start="true"
-                        android:visibility="gone">
+                        app:shimmer_auto_start="true">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -113,10 +140,10 @@
                                 android:layout_width="@dimen/_35sdp"
                                 android:layout_height="@dimen/_35sdp"
                                 android:adjustViewBounds="true"
+                                android:foreground="@color/grey"
                                 android:scaleType="centerCrop"
                                 android:src="@drawable/profile_image"
-                                app:shapeAppearance="@style/roundedImageViewRounded"
-                                android:foreground="@color/grey"/>
+                                app:shapeAppearance="@style/roundedImageViewRounded" />
 
                             <TextView
                                 android:id="@+id/text_name_shimmer"
@@ -124,11 +151,11 @@
                                 android:layout_height="match_parent"
                                 android:layout_marginStart="@dimen/_10sdp"
                                 android:fontFamily="@font/montserrat_extrabold"
+                                android:foreground="@color/grey"
                                 android:gravity="center_vertical"
                                 android:text="Rizal Kambuaya...................................."
                                 android:textColor="@color/black"
-                                android:textSize="@dimen/_12sdp"
-                                android:foreground="@color/grey"/>
+                                android:textSize="@dimen/_12sdp" />
 
                         </LinearLayout>
 
@@ -265,7 +292,7 @@
                 <RelativeLayout
                     android:id="@+id/lay_adapter"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@color/grey_background"
                     app:layout_constraintTop_toBottomOf="@+id/lay_ratting">
@@ -298,14 +325,14 @@
                         android:id="@+id/shimmer_order"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:shimmer_auto_start="true"
-                        android:layout_marginTop="@dimen/_30sdp">
+                        android:layout_marginTop="@dimen/_30sdp"
+                        app:shimmer_auto_start="true">
 
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:orientation="vertical"
-                            android:visibility="gone">
+                            android:visibility="visible">
 
                             <include layout="@layout/shimmer_order" />
 

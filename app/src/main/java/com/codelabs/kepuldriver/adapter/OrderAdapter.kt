@@ -3,8 +3,6 @@ package com.codelabs.kepuldriver.adapter
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import android.widget.Filter
-import android.widget.Filterable
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -23,17 +21,14 @@ import kotlin.collections.ArrayList
 
 class OrderAdapter(val data: ArrayList<OrderResponse.Data?> = arrayListOf()) :
     RecyclerView.Adapter<OrderAdapter.ViewHolder>(){
-    //, Filterable
-    var datafilter : ArrayList<OrderResponse.Data?> = arrayListOf()
     var onClick: ((OrderResponse.Data?) -> Unit?)? = null
     lateinit var sph : SharedPreference
+    var value = ""
 
     inner class ViewHolder(val binding: ItemOrderBinding) : RecyclerView.ViewHolder(binding.root) {
         init {
-//            datafilter = data
             binding.root.setOnClickListener {
                 onClick?.invoke(data[adapterPosition])
-//                onClick?.invoke(datafilter[adapterPosition])
             }
         }
 
@@ -46,19 +41,22 @@ class OrderAdapter(val data: ArrayList<OrderResponse.Data?> = arrayListOf()) :
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         sph = SharedPreference(holder.itemView.context)
-        val df = DecimalFormat("0.00")
+        val df = DecimalFormat("0.0")
         val rupiah = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
         val result = data[position]
         val kg = result?.estWeight?.div(1000)
-//        val result = datafilter[position]
         val image = holder.binding.imageProfilHome
+
         Glide.with(holder.itemView.context)
             .load(result?.senderImage.toString())
             .into(image)
         holder.binding.nameCust.text = result?.senderName
-//        holder.binding.textRange.text = df.format(distanceInKm(lat1 = result?.senderLat!!.toDouble(), lat2 = sph.fetchlatitude()!!.toDouble(), lon1 = result?.senderLong!!.toDouble(), lon2 = sph.fetchlongitude()!!.toDouble()))
-        holder.binding.kg.text = rupiah.format(kg).toString().replace(",00", "").replace("Rp", "")
-            .replace(",", ".")
+
+       if (sph.sharedPreference.contains(SharedPreference.LATITUDE)){
+           holder.binding.textRange.text = df.format(distanceInKm(lat1 = result?.senderLat!!.toDouble(), lat2 = sph.fetchlatitude()!!.toDouble(), lon1 = result?.senderLong!!.toDouble(), lon2 = sph.fetchlongitude()!!.toDouble()))
+       }
+
+        holder.binding.kg.text = kg.toString()
         holder.binding.textBudget.text =
             rupiah.format(result?.estTotal).toString().replace(",00", "").replace("Rp", "")
                 .replace(",", ".")
@@ -68,13 +66,14 @@ class OrderAdapter(val data: ArrayList<OrderResponse.Data?> = arrayListOf()) :
 
         //button terima
         holder.binding.btnSend.setOnClickListener {
-            accOrder(holder)
+            value = result.reservationCode.toString()
+            accOrder(holder, position)
+//            notifyItemChanged(position)
         }
     }
 
     override fun getItemCount(): Int {
         return data.size
-//        return datafilter.size
 //        return if (data.isEmpty()){
 //            0
 //        }else{
@@ -85,38 +84,8 @@ class OrderAdapter(val data: ArrayList<OrderResponse.Data?> = arrayListOf()) :
     fun setData1(datas: List<OrderResponse.Data?>) {
         data.clear()
         data.addAll(datas)
-//        datafilter = data
         notifyDataSetChanged()
     }
-
-//    override fun getFilter(): Filter {
-//        return object : Filter(){
-//            override fun performFiltering(constraint: CharSequence?): FilterResults {
-//                val charSearch = constraint.toString()
-//                if (charSearch.isEmpty()) {
-//                    datafilter = data
-//                } else {
-//                    val resultList = ArrayList<OrderResponse.Data?>()
-//                    for (row in data) {
-//                        if (row?.status(Locale.ROOT)
-//                                .contains(charSearch.lowercase(Locale.ROOT))
-//                        ) {
-//                            resultList.add(row)
-//                        }
-//                    }
-//                    datafilter = resultList
-//                }
-//                val filterResults = FilterResults()
-//                filterResults.values = datafilter
-//                return filterResults
-//            }
-//
-//            override fun publishResults(p0: CharSequence?, p1: FilterResults?) {
-//            }
-//
-//        }
-//    }
-
 
     fun distanceInKm(lat1: Double, lon1: Double, lat2: Double, lon2: Double): Double {
         val theta = lon1 - lon2
@@ -139,9 +108,10 @@ class OrderAdapter(val data: ArrayList<OrderResponse.Data?> = arrayListOf()) :
         return rad * 180.0 / Math.PI
     }
 
-    private fun accOrder(holder : ViewHolder){
+    private fun accOrder(holder: ViewHolder, position: Int){
         sph = SharedPreference(holder.itemView.context)
-        val ordercode = sph.fetchordercode().toString()
+//        val ordercode = sph.fetchordercode().toString()
+        val ordercode = value
 
         ApiMember.instanceRetrofit(holder.itemView.context).accOrder(ordercode).enqueue(object : Callback<DetailResponse>{
             override fun onResponse(
@@ -154,6 +124,8 @@ class OrderAdapter(val data: ArrayList<OrderResponse.Data?> = arrayListOf()) :
                     if (response.code() == 200){
                         Log.e("Auth", responseBody.toString())
                         Toast.makeText(holder.itemView.context, "Orderan berhasil diterima", Toast.LENGTH_LONG).show()
+                        data.removeAt(position)
+                        notifyItemRemoved(position)
                     }
                 }
             }

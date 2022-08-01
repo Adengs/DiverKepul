@@ -63,7 +63,7 @@
             android:text="Masukan kode verifikasi yang kami kirimkan ke email rizalkam***@gmail.com"/>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/lay_email"
+            android:id="@+id/lay_code"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_30sdp"
@@ -77,11 +77,10 @@
             app:boxStrokeColor="@color/blue_kepul"
             app:boxStrokeWidth="1dp">
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/text_email"
+                android:id="@+id/text_code"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
                 android:hint="Kode verifikasi"
-                android:inputType="number"
                 android:textSize="@dimen/_12sdp"
                 android:textColor="@color/semi_black"
                 android:imeOptions="flagNoExtractUi"

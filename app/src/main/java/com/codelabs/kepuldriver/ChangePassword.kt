@@ -20,10 +20,6 @@ class ChangePassword : AppCompatActivity() {
     lateinit var sph : SharedPreference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
         binding = ActivityChangePasswordBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
@@ -122,6 +118,7 @@ class ChangePassword : AppCompatActivity() {
                 if (responseCode == 200){
                     Toast.makeText(this@ChangePassword, "Berhasil ubah password", Toast.LENGTH_LONG).show()
                     sph.savePassword(newpass)
+                    finish()
                     onBackPressed()
                     Log.e("Auth", responseBody.toString())
                 }

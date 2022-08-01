@@ -1,12 +1,16 @@
 package com.codelabs.kepuldriver
 
 import android.content.Intent
+import android.content.res.ColorStateList
+import android.graphics.Color
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.codelabs.kepuldriver.adapter.DetailOrderAdapter
@@ -16,11 +20,13 @@ import com.codelabs.kepuldriver.eventbus.OrderSelected
 import com.codelabs.kepuldriver.helper.SharedPreference
 import com.codelabs.kepuldriver.model.DetailResponse
 import com.codelabs.kepuldriver.model.OrderResponse
+import kotlinx.android.synthetic.main.item_order.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.lang.String
 import java.text.DecimalFormat
 import java.text.NumberFormat
 import java.util.*
@@ -32,10 +38,6 @@ class DetailOrder : AppCompatActivity() {
     lateinit var sph: SharedPreference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
         binding = ActivityDetailOrderBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
@@ -44,6 +46,8 @@ class DetailOrder : AppCompatActivity() {
         getDetail()
 
         setEvent()
+        binding.unitTotal.visibility = View.GONE
+        binding.beratTotal.visibility = View.GONE
     }
 
     private fun setAdapter() {
@@ -68,7 +72,6 @@ class DetailOrder : AppCompatActivity() {
         val rupiah = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
         val image = binding.imageProfilHome
         val ordercode = sph.fetchordercode().toString()
-        val df = DecimalFormat("0.00")
 
         binding.layShimmer.visibility = View.VISIBLE
         binding.layOrder.visibility = View.GONE
@@ -83,26 +86,30 @@ class DetailOrder : AppCompatActivity() {
                     response: Response<DetailResponse>
                 ) {
                     val responseBody = response.body()
-                    val totalkg = responseBody?.data?.estWeight?.div(1000)
+                    val df = DecimalFormat("0.0")
+                    val totalkg = responseBody?.data?.estWeight?.toDouble()?.div(1000)
+                    val color = responseBody?.data?.reservationTypeColor
 
-                        if (responseBody != null) {
+                    if (responseBody != null) {
                         if (response.code() == 200) {
                             Log.e("Auth", responseBody.toString())
                             binding.statusText.text = responseBody.data?.status
                             binding.statusTime.text = responseBody.data?.shippingDate
                             binding.textOrderCode.text = responseBody.data?.reservationCode
+                            binding.textOrderStatus.text = responseBody.data?.reservationType
+                            binding.cardStatus.setCardBackgroundColor(Color.parseColor(color))
                             Glide.with(this@DetailOrder)
                                 .load(responseBody.data?.senderImage.toString())
                                 .into(image)
                             binding.nameCust.text = responseBody.data?.senderName
-//                            binding.textRange.text = df.format(
-//                                distanceInKm(
-//                                    lat1 = responseBody.data?.senderLat!!.toDouble(),
-//                                    lat2 = responseBody.data?.recipientLat!!.toDouble(),
-//                                    lon1 = responseBody.data?.senderLong!!.toDouble(),
-//                                    lon2 = responseBody.data?.recipientLong!!.toDouble()
-//                                )
-//                            )
+                            binding.textRange.text = df.format(
+                                distanceInKm(
+                                    lat1 = responseBody.data?.senderLat!!.toDouble(),
+                                    lat2 = sph.fetchlatitude()!!.toDouble(),
+                                    lon1 = responseBody.data?.senderLong!!.toDouble(),
+                                    lon2 = sph.fetchlongitude()!!.toDouble()
+                                )
+                            )
                             binding.textBudget.text =
                                 rupiah.format(responseBody.data?.estTotal).toString()
                                     .replace(",00", "").replace("Rp", "")
@@ -118,10 +125,29 @@ class DetailOrder : AppCompatActivity() {
                                 )
                             )
 
+                            binding.rute.setOnClickListener {
+                                val lat = responseBody.data?.senderLat!!
+                                val long = responseBody.data?.senderLong!!
+
+                                val gmmIntentUri = Uri.parse("google.navigation:q=${lat},${long}")
+                                val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
+                                mapIntent.setPackage("com.google.android.apps.maps")
+                                mapIntent.resolveActivity(packageManager)?.let {
+                                    startActivity(mapIntent)
+                                }
+
+                                Log.e("maps", gmmIntentUri.toString())
+                            }
+
                             responseBody.data?.detail?.let { showOrder(it) }
-                            binding.totalBerat.text = totalkg.toString()
+                            getTotal()
+
+//                            val unit = responseBody.data?.detail!![0]?.unit
+//                            binding.totalBerat.text = df.format(totalkg).toString()
                             binding.btnTerima.setOnClickListener {
                                 accOrder()
+                                finish()
+                                onBackPressed()
                             }
 
 
@@ -213,5 +239,37 @@ class DetailOrder : AppCompatActivity() {
             }
 
         })
+    }
+
+    private fun getTotal(){
+        sph = SharedPreference(this)
+        val df = DecimalFormat("0.0")
+
+        val total = detailOrderAdapter.data
+
+        var totalberat = 0
+        for (i in 0 until total.size){
+            totalberat += total[i]?.weight!!
+        }
+        val sum = totalberat.div(1000)
+
+        var totalunit = 0
+        for (i in 0 until total.size){
+            totalunit += total[i]?.quantity!!
+        }
+
+        if (total[0]?.unit == "Unit") {
+            binding.unitTotal.visibility = View.VISIBLE
+            binding.unit.text = String.valueOf(totalunit)
+        }
+        if (total[0]?.unit == "Kilogram"){
+            binding.beratTotal.visibility = View.VISIBLE
+            binding.totalBerat.text = String.valueOf(sum).toString()
+        }
+
+        else {
+            binding.beratTotal.visibility = View.VISIBLE
+            binding.totalBerat.text = String.valueOf(sum).toString()
+        }
     }
 }

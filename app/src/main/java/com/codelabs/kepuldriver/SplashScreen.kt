@@ -1,11 +1,15 @@
 package com.codelabs.kepuldriver
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
+import android.provider.SyncStateContract
 import android.util.Log
 import android.view.WindowManager
+import androidx.core.view.WindowCompat
+import androidx.core.view.WindowInsetsControllerCompat
 import com.codelabs.kepuldriver.api.ApiConfig
 import com.codelabs.kepuldriver.helper.SharedPreference
 import com.codelabs.kepuldriver.model.TokenRequest
@@ -18,16 +22,14 @@ class SplashScreen : AppCompatActivity() {
     lateinit var sph : SharedPreference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+
+//        window.statusBarColor = Color.TRANSPARENT
+//        WindowCompat.setDecorFitsSystemWindows(window, false)
+        window.statusBarColor = resources.getColor(R.color.blue_kepul)
+        WindowInsetsControllerCompat(window, window.decorView).isAppearanceLightStatusBars = false
         setContentView(R.layout.activity_splash_screen)
         supportActionBar?.hide()
 
-        Handler().postDelayed({
-            hitToken()
-        }, 3000)
     }
 
     private fun hitToken() {
@@ -46,6 +48,7 @@ class SplashScreen : AppCompatActivity() {
                         sph.saveAuthToken(tokenResponse.data?.token.toString())
                         Log.e("Auth1", tokenResponse.toString())
                         startActivity(intent)
+                        finish()
                     }else{
                         Log.e("Auth2", response.errorBody()!!.string())
                     }
@@ -58,5 +61,19 @@ class SplashScreen : AppCompatActivity() {
 
             })
 
+    }
+
+    override fun onStart() {
+        sph = SharedPreference(this)
+        super.onStart()
+        if (sph.getBoolean()){
+            startActivity(Intent(this, MainActivity::class.java))
+            finish()
+        }else{
+            Handler().postDelayed({
+            hitToken()
+            }, 3000)
+//            hitToken()
+        }
     }
 }

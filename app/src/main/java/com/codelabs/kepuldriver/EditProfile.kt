@@ -32,10 +32,6 @@ class EditProfile : AppCompatActivity() {
     lateinit var sph: SharedPreference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
         binding = ActivityEditProfileBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
@@ -104,7 +100,7 @@ class EditProfile : AppCompatActivity() {
                         binding.textName.setText(responseBody.data?.profile?.name.toString())
                         binding.textEmail.setText(responseBody.data?.email.toString())
                         binding.textPhone.setText(responseBody.data?.profile?.phone.toString())
-                        binding.textAddress.setText(Html.fromHtml(responseBody.data?.profile?.address.toString()))
+                        binding.textAddress.setText(Html.fromHtml(responseBody.data?.profile?.address?.replace("<p>","")))
 
                         binding.layCardProfileShimmer.visibility = View.GONE
                         binding.layCardProfile.visibility = View.VISIBLE

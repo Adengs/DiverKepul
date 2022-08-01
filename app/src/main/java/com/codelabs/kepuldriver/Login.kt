@@ -21,10 +21,7 @@ class Login : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_FULLSCREEN,
-            WindowManager.LayoutParams.FLAG_FULLSCREEN
-        )
+
         binding = ActivityLoginBinding.inflate(layoutInflater)
 
         setContentView(binding.root)
@@ -72,6 +69,7 @@ class Login : AppCompatActivity() {
                             sph.saveAuthToken(logresponse.data?.token.toString())
                             sph.savePassword(binding.textPass.text.toString())
                             startActivity(Intent(this@Login, MainActivity::class.java))
+                            finish()
                             Log.e("Auth", logresponse.toString())
                             sph.put(login = true)
                         } else {
@@ -96,5 +94,9 @@ class Login : AppCompatActivity() {
                 }
 
             })
+    }
+
+    override fun onBackPressed() {
+        super.onBackPressed()
     }
 }

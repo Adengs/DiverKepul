@@ -33,7 +33,7 @@ class OrderAktifAdapter (val data : ArrayList<OrderResponse.Data?> = arrayListOf
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         sph = SharedPreference(holder.itemView.context)
-        val df = DecimalFormat("0.00")
+        val df = DecimalFormat("0.0")
         val rupiah = NumberFormat.getCurrencyInstance(Locale("in", "ID"))
         val result = data[position]
         val totalkg = result?.estWeight?.div(1000)
@@ -45,9 +45,8 @@ class OrderAktifAdapter (val data : ArrayList<OrderResponse.Data?> = arrayListOf
             .load(result?.senderImage.toString())
             .into(image)
         holder.binding.nameCust.text = result?.senderName
-//        holder.binding.textRange.text = df.format(distanceInKm(lat1 = result?.senderLat!!.toDouble(), lat2 = sph.fetchlatitude()!!.toDouble(), lon1 = result?.senderLong!!.toDouble(), lon2 = sph.fetchlongitude()!!.toDouble()))
-        holder.binding.textBerat.text = rupiah.format(totalkg).toString().replace(",00", "").replace("Rp", "")
-            .replace(",", ".")
+        holder.binding.textRange.text = df.format(distanceInKm(lat1 = result?.senderLat!!.toDouble(), lat2 = sph.fetchlatitude()!!.toDouble(), lon1 = result?.senderLong!!.toDouble(), lon2 = sph.fetchlongitude()!!.toDouble()))
+        holder.binding.textBerat.text = totalkg.toString()
         holder.binding.textBudget.text =
             rupiah.format(result?.estTotal).toString().replace(",00", "").replace("Rp", "")
                 .replace(",", ".")

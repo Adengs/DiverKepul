@@ -46,15 +46,31 @@
                     android:textColor="@color/black"
                     android:textSize="@dimen/_9sdp"/>
 
-                <TextView
-                    android:id="@+id/text_timbangan"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2500 Kg"
-                    android:fontFamily="@font/montserrat_regular"
-                    android:textColor="@color/grey"
-                    android:textSize="@dimen/_9sdp"
-                    android:layout_marginTop="@dimen/_3sdp"/>
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/text_timbangan"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="2500"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_9sdp"
+                        android:layout_marginTop="@dimen/_3sdp"/>
+
+                    <TextView
+                        android:id="@+id/text_timbangan_kg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Kg"
+                        android:fontFamily="@font/montserrat_regular"
+                        android:textColor="@color/grey"
+                        android:textSize="@dimen/_9sdp"
+                        android:layout_marginTop="@dimen/_3sdp"
+                        android:layout_marginStart="@dimen/_3sdp"/>
+                </LinearLayout>
 
             </LinearLayout>
 
@@ -68,11 +84,21 @@
                 android:id="@+id/text_berat"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10 Kg"
+                android:text="10"
                 android:textColor="@color/black"
                 android:fontFamily="@font/montserrat_regular"
                 android:textSize="@dimen/_9sdp"
-                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginStart="@dimen/_8sdp"/>
+
+            <TextView
+                android:id="@+id/text_berat_kg"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Kg"
+                android:textColor="@color/black"
+                android:fontFamily="@font/montserrat_regular"
+                android:textSize="@dimen/_9sdp"
+                android:layout_marginStart="@dimen/_3sdp"
                 android:layout_marginEnd="@dimen/_8sdp"/>
 
             <ImageView

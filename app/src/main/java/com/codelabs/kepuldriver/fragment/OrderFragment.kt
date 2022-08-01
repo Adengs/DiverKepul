@@ -1,7 +1,10 @@
 package com.codelabs.kepuldriver.fragment
 
+import android.annotation.SuppressLint
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.content.res.ColorStateList
 import android.os.Bundle
 import android.util.Log
@@ -10,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codelabs.kepuldriver.DetailOrder
@@ -23,6 +27,8 @@ import com.codelabs.kepuldriver.databinding.FragmentOrderBinding
 import com.codelabs.kepuldriver.eventbus.OrderSelected
 import com.codelabs.kepuldriver.helper.SharedPreference
 import com.codelabs.kepuldriver.model.OrderResponse
+import com.codelabs.kepuldriver.model.ResponseUser
+import com.google.android.gms.location.*
 import org.greenrobot.eventbus.EventBus
 import retrofit2.Call
 import retrofit2.Callback
@@ -34,6 +40,10 @@ class OrderFragment : Fragment() {
     private lateinit var orderAktifAdapter: OrderAktifAdapter
     private lateinit var orderHistoryAdapter: OrderHistoryAdapter
     lateinit var sph : SharedPreference
+    private lateinit var fusedLocationProviderClient: FusedLocationProviderClient
+    private lateinit var locationRequest: LocationRequest
+    private lateinit var locationCallback: LocationCallback
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -55,6 +65,31 @@ class OrderFragment : Fragment() {
         onChecked(context)
         getOrder(context)
         getOrderAktif(context)
+
+        if (sph.getReady()){
+            binding.switchOrder.isChecked = true
+        }else{
+            binding.switchOrder.isChecked = false
+        }
+
+        if (binding.switchOrder.isChecked()){
+            binding.textOnline.visibility = View.VISIBLE
+            binding.textOffline.visibility = View.GONE
+        }else{
+            binding.textOnline.visibility = View.GONE
+            binding.textOffline.visibility = View.VISIBLE
+
+            binding.recycleViewOrderAktif.visibility = View.GONE
+            binding.recycleViewOrder.visibility = View.GONE
+
+            binding.materialButtonAktif.isEnabled = false
+            binding.materialButtonHistory.isEnabled = false
+        }
+
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+        setSwitch(context)
+        getLocationUpdates(context)
+
         return binding.root
     }
 
@@ -194,7 +229,7 @@ class OrderFragment : Fragment() {
         orderAktifAdapter.onClick = {
             EventBus.getDefault().post(OrderSelected(it))
             startActivity(Intent(context, OrderDetail::class.java))
-            it?.reservationCode?.let { it1 -> sph.saveordercode(it1) }
+            it?.reservationCode?.let { it1 -> sph.saveordercodeaktif(it1) }
         }
 //        orderAdapter.onClick = {
 //            EventBus.getDefault().post(OrderSelected(it))
@@ -278,5 +313,142 @@ class OrderFragment : Fragment() {
                 }
 
             })
+    }
+
+    private fun setSwitch(context : Context){
+        sph = SharedPreference(context)
+        binding.switchOrder.setOnCheckedChangeListener { buttonView, isChecked ->
+            if (isChecked){
+                ApiMember.instanceRetrofit(view?.context!!).hitSwitch().enqueue(object : Callback<ResponseUser>{
+                    override fun onResponse(
+                        call: Call<ResponseUser>,
+                        response: Response<ResponseUser>
+                    ) {
+                        val responseBody = response.body()
+                        if (response.code() == 200){
+                            Log.e("SwitchReady", responseBody.toString())
+                            sph.ready(true)
+//                            getLocation(context)
+                            getLocationUpdates(context)
+                        }
+                    }
+                    override fun onFailure(call: Call<ResponseUser>, t: Throwable) {
+                        t.printStackTrace()
+                    }
+
+                })
+
+                binding.textOnline.visibility = View.VISIBLE
+                binding.textOffline.visibility = View.GONE
+                binding.recycleViewOrderAktif.visibility = View.VISIBLE
+                binding.recycleViewOrder.visibility = View.VISIBLE
+                binding.recycleViewOrderHistory.visibility = View.VISIBLE
+
+                binding.materialButtonAktif.isEnabled = true
+                binding.materialButtonHistory.isEnabled = true
+
+            } else {
+                ApiMember.instanceRetrofit(view?.context!!).hitSwitch().enqueue(object : Callback<ResponseUser>{
+                    override fun onResponse(
+                        call: Call<ResponseUser>,
+                        response: Response<ResponseUser>
+                    ) {
+                        val responseBody = response.body()
+                        if (response.code() == 200){
+                            Log.e("SwitchNotReady", responseBody.toString())
+                            sph.ready(false)
+                        }
+                    }
+                    override fun onFailure(call: Call<ResponseUser>, t: Throwable) {
+                        t.printStackTrace()
+                    }
+
+                })
+
+                binding.textOnline.visibility = View.GONE
+                binding.textOffline.visibility = View.VISIBLE
+                binding.recycleViewOrderAktif.visibility = View.GONE
+                binding.recycleViewOrder.visibility = View.GONE
+
+                binding.materialButtonAktif.isEnabled = false
+                binding.materialButtonHistory.isEnabled = false
+            }
+        }
+    }
+
+//    private fun getLocation(context: Context) {
+//        sph = SharedPreference(context)
+//        if (ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION)
+//            != PackageManager.PERMISSION_GRANTED &&
+//            ActivityCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION)
+//            != PackageManager.PERMISSION_GRANTED){
+//            ActivityCompat.requestPermissions(context as Activity, arrayOf(android.Manifest.permission.ACCESS_FINE_LOCATION), 100)
+//            return
+//        }
+//
+//        val location = fusedLocationProviderClient.lastLocation
+//        location.addOnSuccessListener {
+//            if (it != null){
+//                val textLatitude = it.latitude.toString()
+//                val textLongitude = it.longitude.toString()
+//                sph.savelatitude(textLatitude)
+//                sph.savelongitude(textLongitude)
+//            }
+//        }
+//
+//    }
+
+    override fun onResume() {
+        super.onResume()
+        startLocationUpdates()
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun getLocationUpdates(context: Context) {
+        sph = SharedPreference(context)
+        fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(context)
+        locationRequest = LocationRequest()
+        locationRequest.interval = 50000
+        locationRequest.fastestInterval = 50000
+        locationRequest.smallestDisplacement = 170f // 170 m = 0.1 mile
+        locationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY //set according to your app function
+        locationCallback = object : LocationCallback() {
+            override fun onLocationResult(locationResult: LocationResult?) {
+                locationResult ?: return
+
+                if (locationResult.locations.isNotEmpty()) {
+                    // get latest location
+                    val location =
+                        locationResult.lastLocation
+                    // use your location object
+                    // get latitude , longitude and other info from this
+                    sph.savelatitude(location.latitude.toString())
+                    sph.savelongitude(location.longitude.toString())
+                }
+
+
+            }
+        }
+    }
+
+    //start location updates
+    @SuppressLint("MissingPermission")
+    private fun startLocationUpdates() {
+        fusedLocationProviderClient.requestLocationUpdates(
+            locationRequest,
+            locationCallback,
+            null /* Looper */
+        )
+    }
+
+    // stop location updates
+    private fun stopLocationUpdates() {
+        fusedLocationProviderClient.removeLocationUpdates(locationCallback)
+    }
+
+    // stop receiving location update when activity not visible/foreground
+    override fun onPause() {
+        super.onPause()
+        stopLocationUpdates()
     }
 }

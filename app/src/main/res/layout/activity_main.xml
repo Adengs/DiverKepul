@@ -20,6 +20,6 @@
         android:layout_alignParentBottom="true"
         app:menu="@menu/bottom_navigation"
         app:labelVisibilityMode="labeled"
-        style="@style/BottomNavigationViewStyle"/>
+        style="@style/BottomNavigationViewStyle" />
 
 </RelativeLayout>

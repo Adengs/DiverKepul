@@ -16,7 +16,7 @@
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/drawable/tab_indicator_corner_bg.xml" value="0.1361111111111111" />
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/drawable/tab_indicator_corner_border_bg.xml" value="0.1361111111111111" />
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/activity_change_password.xml" value="0.2" />
-        <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/activity_detail_order.xml" value="0.25" />
+        <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/activity_detail_order.xml" value="0.22" />
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/activity_edit_profile.xml" value="0.25" />
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/activity_email_verification.xml" value="0.21" />
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/activity_forget_password.xml" value="0.18" />
@@ -35,7 +35,7 @@
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/fragment_order_aktif.xml" value="0.25" />
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/fragment_order_history.xml" value="0.13486842105263158" />
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/fragment_profile.xml" value="0.22" />
-        <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/item_foto_order.xml" value="0.5" />
+        <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/item_foto_order.xml" value="0.67" />
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/item_jenis_barang.xml" value="0.1111111111111111" />
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/item_order.xml" value="0.25" />
         <entry key="..\:/Adeng/KepulDriver/app/src/main/res/layout/item_order_aktif.xml" value="0.25" />
