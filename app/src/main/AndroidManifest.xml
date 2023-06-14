@@ -22,8 +22,9 @@
         android:theme="@style/Theme.KepulDriver"
         android:usesCleartextTraffic="true"
         android:requestLegacyExternalStorage="true"
-        android:fullBackupContent="false"
         android:fullBackupOnly="false">
+<!--        android:fullBackupContent="false"-->
+
         <activity
             android:name=".MainActivity"
             android:exported="false" />
